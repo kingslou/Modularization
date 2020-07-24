@@ -1,6 +1,7 @@
 package com.geen.module_net.api;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.socks.library.KLog;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class AuthUtil {
                 preStr = preStr + key + "=" + value + "&";
             }
         }
-        LogUtils.d("签名"+preStr);
+        KLog.d("签名"+preStr);
         return preStr;
     }
 
@@ -64,7 +65,7 @@ public class AuthUtil {
         //加密sign
         String authSign = MD5(createLinkString(newParams) + MD5(APP_SECRET));
         params.put("authSign", authSign);
-        LogUtils.d("签名"+authSign);
+        KLog.d("签名"+authSign);
         return authSign;
     }
 

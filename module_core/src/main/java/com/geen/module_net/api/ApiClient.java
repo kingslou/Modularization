@@ -33,30 +33,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author youtui
  */
 public class ApiClient {
-    private static Retrofit mRetrofit;
+    private Retrofit mRetrofit;
 
     private String baseUrl;
 
     private static final int TIME_OUT = 20 * 1000;
 
+    private ApiClient() {
+        initApiClient("");
+    }
+
     private static class Holder {
 
-        private static final ApiClient apiClient = new ApiClient();
+        private static final ApiClient INSTANCE = new ApiClient();
     }
 
     public static ApiClient getInstance() {
-        return Holder.apiClient;
-    }
-
-    public void initBaseUrl(String url) {
-        if (TextUtils.isEmpty(baseUrl)) {
-            baseUrl = url;
-            initApiClient(baseUrl);
-        }
+        return Holder.INSTANCE;
     }
 
     private void initApiClient(String baseUrl) {
-        if(TextUtils.isEmpty(baseUrl)){
+        if (TextUtils.isEmpty(baseUrl)) {
             baseUrl = UrlManger.getApiUrl();
         }
         OkHttpClient client = new OkHttpClient.Builder()
@@ -75,6 +72,9 @@ public class ApiClient {
     }
 
     public <T> T create(Class<T> service) {
+        if (mRetrofit == null) {
+            initApiClient("");
+        }
         return mRetrofit.create(service);
     }
 
