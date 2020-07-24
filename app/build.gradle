@@ -1,25 +1,90 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    buildFeatures {
+        viewBinding = true
+    }
     defaultConfig {
         applicationId "com.hengwei.wmssystem"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
+        flavorDimensions "default"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('../hengwei.jks')
+            storePassword '123456'
+            keyPassword '123456'
+            keyAlias = 'scanbar'
+        }
+
+        release {
+            storeFile file('../hengwei.jks')
+            storePassword '123456'
+            keyPassword '123456'
+            keyAlias = 'scanbar'
+        }
     }
 
     buildTypes {
+
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('-release.apk')) {
+                        def fileName = "${productFlavors[0].name}_wms_${defaultConfig.versionName}_C_${defaultConfig.versionCode}_${packTime()}-release.apk"
+                        output.outputFileName = new File("apk_release", fileName)
+                    }
+                }
+            }
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    productFlavors {
+        //开发环境
+        develop {
+            buildConfigField "int", "ENV_TYPE", "1"
+        }
+        //测试环境
+        uat {
+            buildConfigField "int", "ENV_TYPE", "2"
+
+        }
+        //生产环境
+        product {
+            buildConfigField "int", "ENV_TYPE", "3"
+        }
+    }
+}
+
+static def packTime() {
+    return new Date().format("yyyy-MM-dd_HHmmss", TimeZone.getTimeZone("Asia/Shanghai"))
 }
 
 dependencies {

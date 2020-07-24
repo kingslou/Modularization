@@ -1,2 +1,3 @@
+include ':commonLibary'
 include ':app'
 rootProject.name = "wmsSystem"

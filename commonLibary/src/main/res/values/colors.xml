@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#354A5F</color>
+    <color name="colorPrimaryDark">#354A5F</color>
+    <color name="colorAccent">#354A5F</color>
+
+    <color name="white">#ffffff</color>
+    <color name="white_little">#EBEBEB</color>
+    <color name="white_50">#3fffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_50">#3f000000</color>
+    <color name="black_20">#20000000</color>
+    <color name="text_black">#333333</color>
+    <color name="text_black_little">#999999</color>
+    <color name="blue">#2196F3</color>
+    <color name="green_label">#5ABEBC</color>
+    <color name="blue_press">#FF134E7C</color>
+    <color name="blue_material">#03a9f4</color>
+    <color name="green">#ff4f8c0b</color>
+    <color name="red">#E9262E</color>
+    <color name="transparent">#00000000</color>
+    <color name="grey">#ff5b5a5a</color>
+    <color name="dark_gray">#EBEBEB</color>
+    <color name="light_gray">#E0E0E0</color>
+
+    <color name="color_member_card_yellow">#FDCA1F</color>
+    <color name="color_member_card_gray">#CCCCCC</color>
+
+    <color name="windowBackground">#3D000000</color>
+    <color name="windowBackground1">#1A000000</color>
+
+    <color name="color_order_paid">#999999</color>
+    <color name="color_order_pending">#F52A2A</color>
+
+    <color name="color_user_name_tips">#999999</color>
+
+    <color name="color_bottom_tab_text">#999999</color>
+</resources>

@@ -1,0 +1,51 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/blue_material</item>
+    </style>
+
+
+    <style name="splashBgTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/blue_material</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="MatchMatch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="goodsTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+
+    </style>
+
+    <style name="common_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="common_window_bottom_in_bottom_out" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/common_dialog_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/common_dialog_out_bottom</item>
+    </style>
+
+    <style name="common_window_bottom_in_bottom_out_p" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/common_dialog_in_bottom_p</item>
+        <item name="android:windowExitAnimation">@anim/common_dialog_out_bottom_p</item>
+    </style>
+</resources>
