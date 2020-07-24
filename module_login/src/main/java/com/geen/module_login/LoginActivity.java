@@ -60,10 +60,6 @@ public class LoginActivity extends BaseActivity {
         String aa = getIntent().getStringExtra("name");
     }
 
-    @Override
-    public void onEventBus(Event event) {
-
-    }
 
     private void intiView() {
         progressDialog = new ProgressDialog(this);
@@ -126,7 +122,7 @@ public class LoginActivity extends BaseActivity {
                 ConfigUtil.saveString(AppConstans.TOKEN,loginResponse.getLoginInfo().getToken());
                 Log.e("当前登录的token",loginResponse.getLoginInfo().getToken());
 
-                ServiceFactory.getInstance().getUserInfoService().cacheLoginInfo(new Gson().toJson(loginResponse.getLoginInfo()));
+                ServiceFactory.getInstance().getUserInfoService().cacheLoginInfo(loginResponse.getLoginInfo());
 
                 ARouter.getInstance().build(RouteConfig.ROUTE_MAIN).navigation(LoginActivity.this, new NavCallback() {
                     @Override

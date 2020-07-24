@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">ScanBar</string>
+    <string name="app_name">wmsAndroid</string>
 
-    <string name="app_name_dev">Dev_ScanBar</string>
+    <string name="app_name_dev">Dev_wmsAndroid</string>
 
-    <string name="app_name_uat">Uat_ScanBar</string>
+    <string name="app_name_uat">Uat_wmsAndroid</string>
 
-    <string name="text_app_title">欧莱雅RF扫码系统</string>
+    <string name="text_app_title">WMS Android System</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

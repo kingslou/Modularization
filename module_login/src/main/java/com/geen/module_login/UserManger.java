@@ -1,6 +1,7 @@
 package com.geen.module_login;
 
 import android.text.TextUtils;
+
 import com.geen.commonlibary.BaseApplication;
 import com.geen.commonlibary.config.AppConstans;
 import com.geen.commonlibary.utils.ACache;
@@ -19,6 +20,13 @@ public class UserManger {
 
     public void cacheLoginInfo(String loginInfo) {
         ACache.get(BaseApplication.getInstance()).put(AppConstans.LOGININFO, loginInfo);
+    }
+
+    public String getToken() {
+        if (getLoginInfo() != null) {
+            return getLoginInfo().getToken();
+        }
+        return "";
     }
 
     public LoginInfo getLoginInfo() {
