@@ -12,6 +12,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseActivity;
 import com.hengwei.module_main.databinding.MainActivityMainBinding;
+import com.socks.library.KLog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,8 @@ public class MainActivity extends BaseActivity {
     private MainActivityMainBinding mainBinding;
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<View> viewList = new ArrayList<>();
-
+    private HomePagerAdapter homePagerAdapter;
+    private int index = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,20 +48,39 @@ public class MainActivity extends BaseActivity {
         if(tab2!=null){
             fragmentList.add(tab2);
         }
+        Fragment tab3 = (Fragment)ARouter.getInstance().build(RouteConfig.ROUTE_FRAGMENT_TAB3).navigation();
+        if(tab3!=null){
+            fragmentList.add(tab3);
+        }
+
+        KLog.e("数量"+fragmentList.size());
+
         LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.MATCH_PARENT);
 
         for(int i=0;i<fragmentList.size();i++){
+            index++;
             @SuppressLint("InflateParams")
             View view = getLayoutInflater().inflate(R.layout.main_item_tab,null);
+            view.setTag(index);
             AppCompatTextView tabName = view.findViewById(R.id.text_tab);
             tabName.setText("Tab"+i);
             view.findViewById(R.id.llTabRoot).setOnClickListener(v->{
                 resetTabSelect();
                 view.setSelected(true);
+                mainBinding.viewPager.setCurrentItem(Integer.parseInt(view.getTag().toString()),false);
             });
             params.weight = 1;
             mainBinding.llBottomNet.addView(view,params);
             viewList.add(view);
+        }
+
+        homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(),fragmentList);
+        mainBinding.viewPager.setAdapter(homePagerAdapter);
+        mainBinding.viewPager.setOffscreenPageLimit(fragmentList.size());
+
+        if(fragmentList.size()>0){
+            mainBinding.viewPager.setCurrentItem(0);
+            viewList.get(0).setSelected(true);
         }
     }
 

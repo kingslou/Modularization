@@ -8,14 +8,15 @@ public class RouteConfig {
 
     public static final String ROUTE_MAIN = "/main/main";
 
-    public static String ROUTE_DETAIL = "/main/detail";
+    public static final String ROUTE_DETAIL = "/detail/detail";
 
-    public static String ROUTE_FRAGMENT_MAIN  = "/fragment/main";
+    public static final String ROUTE_FRAGMENT_MAIN  = "/fragment/main";
 
 
 
-    public static final String ROUTE_FRAGMENT_TAB1 = "/fragment/tab1";
-    public static final String ROUTE_FRAGMENT_TAB2 = "/fragment/tab2";
+    public static final String ROUTE_FRAGMENT_TAB1 = "/fragment1/tab1";
+    public static final String ROUTE_FRAGMENT_TAB2 = "/fragment2/tab2";
+    public static final String ROUTE_FRAGMENT_TAB3 = "/fragment3/tab3";
 
 
 

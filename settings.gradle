@@ -1,3 +1,4 @@
+include ':module_home_tab_3_test'
 include ':module_main'
 include ':module_home_tab_2_test'
 include ':module_home_tab_1_test'

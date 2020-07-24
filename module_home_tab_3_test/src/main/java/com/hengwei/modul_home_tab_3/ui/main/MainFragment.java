@@ -1,39 +1,39 @@
-package com.hengwei.module_home_tab_1_test.ui.main;
+package com.hengwei.modul_home_tab_3.ui.main;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.geen.commonlibary.RouteConfig;
-import com.geen.commonlibary.base.BaseFragment;
-import com.hengwei.module_home_tab_1_test.R;
-import com.hengwei.module_home_tab_1_test.Tab1Activity;
+import com.hengwei.modul_home_tab_3.R;
 
-@Route(path = RouteConfig.ROUTE_FRAGMENT_TAB1)
-public class Tab1Fragment extends BaseFragment {
+@Route(path = RouteConfig.ROUTE_FRAGMENT_TAB3)
+public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
 
-    public static Tab1Fragment newInstance() {
-        return new Tab1Fragment();
+    public static MainFragment newInstance() {
+        return new MainFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab1_main_fragment, container, false);
+        return inflater.inflate(R.layout.tab3_main_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       // mViewModel = new ViewModelProvider((Tab1Activity)mActivity).get(MainViewModel.class);
+        //mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
     }
 

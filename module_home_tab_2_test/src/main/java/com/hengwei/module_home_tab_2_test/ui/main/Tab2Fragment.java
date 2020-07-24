@@ -1,7 +1,5 @@
 package com.hengwei.module_home_tab_2_test.ui.main;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +12,6 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseFragment;
-import com.hengwei.module_home_tab_2_test.Tab2Activity;
 import com.hengwei.module_home_tab_2_test.R;
 
 @Route(path = RouteConfig.ROUTE_FRAGMENT_TAB2)
@@ -37,7 +34,7 @@ public class Tab2Fragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider((Tab2Activity)mActivity).get(MainViewModel.class);
+       // mViewModel = new ViewModelProvider((Tab2Activity)mActivity).get(MainViewModel.class);
         // TODO: Use the ViewModel
     }
 

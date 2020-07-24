@@ -6,10 +6,7 @@ if(isRunAlone.toBoolean()){
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
-    buildFeatures {
-        viewBinding = true
-    }
-    resourcePrefix "main_"
+    resourcePrefix "tab3_"
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
@@ -18,7 +15,6 @@ android {
         flavorDimensions "default"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -54,7 +50,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     productFlavors {
         //开发环境
         develop {
@@ -77,9 +72,5 @@ dependencies {
     implementation project(path: ':componentManger')
     implementation project(path: ':commonLibary')
     implementation project(path: ':module_core')
-
-    implementation project(path: ':module_home_tab_1_test')
-    implementation project(path: ':module_home_tab_2_test')
-    implementation project(path: ':module_home_tab_3_test')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }
