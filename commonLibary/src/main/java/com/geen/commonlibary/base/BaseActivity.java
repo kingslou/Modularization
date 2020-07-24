@@ -113,10 +113,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusCome(Event event) {
-        onEventBus(event);
-    }
 
-    public abstract void onEventBus(Event event);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
