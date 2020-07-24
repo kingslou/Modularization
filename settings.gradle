@@ -1,3 +1,5 @@
+include ':module_home_tab_2_test'
+include ':module_home_tab_1_test'
 include ':module_login'
 include ':componentManger'
 include ':module_core'

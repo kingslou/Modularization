@@ -4,19 +4,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.Utils;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseActivity;
 import com.geen.commonlibary.config.AppConstans;
-import com.geen.commonlibary.eventbus.Event;
-import com.geen.commonlibary.mvp.BasePresenter;
 import com.geen.commonlibary.utils.ConfigUtil;
 import com.geen.commonlibary.utils.ProgressDialog;
 import com.geen.commonlibary.utils.ScreenUtil;
@@ -24,13 +19,10 @@ import com.geen.commonlibary.utils.ToastUtil;
 import com.geen.componentmanger.ServiceFactory;
 import com.geen.module_login.databinding.LoginActivityLoginBinding;
 import com.geen.module_net.api.OnResponseListener;
-import com.geen.module_net.bean.LoginInfo;
 import com.geen.module_net.bean.response.LoginResponse;
 import com.geen.module_net.repository.LoginRepository;
 import com.geen.module_net.repository.LoginRepositoryImp;
-import com.google.gson.Gson;
 import com.gyf.immersionbar.ImmersionBar;
-import com.socks.library.KLog;
 
 /***
  * @author 86153
@@ -39,8 +31,8 @@ import com.socks.library.KLog;
 @Route(path = RouteConfig.ROUTE_LOGIN)
 public class LoginActivity extends BaseActivity {
 
-    @Autowired(name = "name")
-    String name;
+    @Autowired(name = RouteConfig.Params.ROUTE_PARAMS_LOGIN_TO)
+    String routeLoginTo;
 
     private LoginActivityLoginBinding loginBinding;
     private LoginRepository loginRepository;
@@ -57,7 +49,9 @@ public class LoginActivity extends BaseActivity {
                 .init();
         intiView();
         loginBinding.statusView.getLayoutParams().height = ScreenUtil.getStatusBarHeight();
-        String aa = getIntent().getStringExtra("name");
+        if(TextUtils.isEmpty(routeLoginTo)){
+            routeLoginTo = RouteConfig.ROUTE_MAIN;
+        }
     }
 
 
@@ -118,13 +112,9 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
                 ConfigUtil.saveBoolean(AppConstans.CHECK_PWD, loginBinding.checkPwd.isChecked());
-
-                ConfigUtil.saveString(AppConstans.TOKEN,loginResponse.getLoginInfo().getToken());
                 Log.e("当前登录的token",loginResponse.getLoginInfo().getToken());
-
                 ServiceFactory.getInstance().getUserInfoService().cacheLoginInfo(loginResponse.getLoginInfo());
-
-                ARouter.getInstance().build(RouteConfig.ROUTE_MAIN).navigation(LoginActivity.this, new NavCallback() {
+                ARouter.getInstance().build(routeLoginTo).navigation(LoginActivity.this, new NavCallback() {
                     @Override
                     public void onArrival(Postcard postcard) {
                         finish();

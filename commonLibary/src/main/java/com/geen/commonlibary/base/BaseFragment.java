@@ -1,4 +1,5 @@
 package com.geen.commonlibary.base;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -15,6 +16,8 @@ import org.greenrobot.eventbus.ThreadMode;
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
 
     public T mPresenter;
+
+    public Activity mActivity;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,14 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     public void onEventBusCome(Event event) {
 
     }
+
+    @Override
+    public void onAttachFragment(@NonNull Fragment childFragment) {
+        super.onAttachFragment(childFragment);
+        mActivity = childFragment.getActivity();
+
+    }
+
 
     protected T initPresenter(){
         return null;
@@ -44,6 +55,15 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        mActivity = (Activity)context;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        if(mActivity==null){
+            mActivity = activity;
+        }
     }
 
     @Override

@@ -14,4 +14,14 @@ public class RouteConfig {
 
 
 
+
+    public static class Params{
+
+        public static final String ROUTE_PARAMS_LOGIN_TO = "route_params_login_to";
+
+
+    }
+
+
+
 }
