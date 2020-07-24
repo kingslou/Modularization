@@ -3,6 +3,8 @@ package com.geen.module_net.api;
 import android.app.Activity;
 import android.text.TextUtils;
 
+import com.blankj.utilcode.util.ApiUtils;
+import com.geen.commonlibary.config.UrlManger;
 import com.geen.commonlibary.eventbus.Event;
 import com.geen.commonlibary.eventbus.EventBusUtil;
 import com.geen.commonlibary.eventbus.EventCode;
@@ -10,6 +12,7 @@ import com.geen.commonlibary.utils.HandleUtils;
 import com.geen.module_net.api.interceptor.LogInterceptor;
 import com.geen.module_net.bean.response.BaseResponse;
 import com.google.gson.Gson;
+
 import java.util.concurrent.TimeUnit;
 
 import cn.nekocode.rxlifecycle.LifecycleEvent;
@@ -32,18 +35,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     private static Retrofit mRetrofit;
 
+    private String baseUrl;
+
     private static final int TIME_OUT = 20 * 1000;
 
-    public ApiClient(String baseUrl) {
-        initApiClient(baseUrl);
+    private static class Holder {
+
+        private static final ApiClient apiClient = new ApiClient();
     }
 
-    private void initApiClient(String baseUrl){
+    public static ApiClient getInstance() {
+        return Holder.apiClient;
+    }
 
+    public void initBaseUrl(String url) {
+        if (TextUtils.isEmpty(baseUrl)) {
+            baseUrl = url;
+            initApiClient(baseUrl);
+        }
+    }
+
+    private void initApiClient(String baseUrl) {
+        if(TextUtils.isEmpty(baseUrl)){
+            baseUrl = UrlManger.getApiUrl();
+        }
         OkHttpClient client = new OkHttpClient.Builder()
                 .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
                 .writeTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
-                .connectTimeout(TIME_OUT,TimeUnit.MILLISECONDS)
+                .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
                 .addInterceptor(new LogInterceptor())
                 .addInterceptor(new ParameterInterceptor()).build();
 
@@ -66,7 +85,7 @@ public class ApiClient {
      * @param respListener
      * @param <T>
      */
-    public  <T> void setSubscribe(Activity activity, Observable<T> observable, OnResponseListener<T> respListener) {
+    public <T> void setSubscribe(Activity activity, Observable<T> observable, OnResponseListener<T> respListener) {
         observable.subscribeOn(Schedulers.io())
                 //子线程访问网络
                 .subscribeOn(Schedulers.newThread())
@@ -77,6 +96,7 @@ public class ApiClient {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
+
                     @Override
                     public void onNext(T t) {
                         BaseResponse baseResponse = (BaseResponse) t;
@@ -94,23 +114,23 @@ public class ApiClient {
                     @Override
                     public void onError(Throwable e) {
                         //todo 也可以在这里统一处理异常
-                        if(e instanceof HttpException){
+                        if (e instanceof HttpException) {
                             HttpException exception = (HttpException) e;
-                            if(exception.code()==403){
+                            if (exception.code() == 403) {
                                 respListener.onFailed("");
                                 HandleUtils.sUiHandler.post(() -> EventBusUtil.sendEvent(new Event(EventCode.EVENT_TOKEN_ERROR)));
-                            }else{
+                            } else {
                                 try {
                                     ResponseBody body = exception.response().errorBody();
                                     String json = body.string();
-                                    BaseResponse result = new Gson().fromJson(json,BaseResponse.class);
+                                    BaseResponse result = new Gson().fromJson(json, BaseResponse.class);
                                     respListener.onFailed(result.getMsg());
                                 } catch (Exception exception1) {
                                     respListener.onFailed(exception1.getMessage());
                                 }
                             }
 
-                        }else{
+                        } else {
                             respListener.onFailed(e.getMessage());
                         }
                     }
@@ -119,7 +139,6 @@ public class ApiClient {
                     public void onComplete() {
 
                     }
-                })
-        ;
+                });
     }
 }

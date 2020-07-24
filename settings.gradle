@@ -1,3 +1,5 @@
+include ':module_login'
+include ':componentManger'
 include ':module_core'
 include ':commonLibary'
 include ':app'

@@ -17,10 +17,12 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        ARouter.openDebug();
-        ARouter.openLog();
+        if(BuildConfig.DEBUG){
+            ARouter.openDebug();
+            ARouter.openLog();
+        }
         ARouter.init(this);
-        ConfigUtil.mPref = getSharedPreferences("hengwei_scaner",MODE_PRIVATE);
+        ConfigUtil.mPref = getSharedPreferences("hengwei_sys",MODE_PRIVATE);
         LuoJiFileLog.start(this);
         KLog.init(true,"retrofit");
         modulesApplicationInit();

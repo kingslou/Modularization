@@ -12,20 +12,17 @@ import com.geen.module_net.bean.response.LoginResponse;
 public class LoginRepositoryImp implements LoginRepository {
 
     private LoginApi loginApi;
-    private ApiClient apiClient;
-
     public LoginRepositoryImp() {
-        apiClient = new ApiClient(UrlManger.getApiUrl());
-        loginApi = apiClient.create(LoginApi.class);
+        loginApi = ApiClient.getInstance().create(LoginApi.class);
     }
 
     @Override
     public void loginApp(Activity activity, String userName, String userPwd, OnResponseListener<LoginResponse> responseListener) {
-        apiClient.setSubscribe(activity, loginApi.loginApp(userName, userPwd), responseListener);
+        ApiClient.getInstance().setSubscribe(activity, loginApi.loginApp(userName, userPwd), responseListener);
     }
 
     @Override
     public void loginByToken(Activity activity, OnResponseListener<LoginResponse> responseOnResponseListener) {
-        apiClient.setSubscribe(activity, loginApi.loginAppByToken(), responseOnResponseListener);
+        ApiClient.getInstance().setSubscribe(activity, loginApi.loginAppByToken(), responseOnResponseListener);
     }
 }
