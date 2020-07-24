@@ -11,16 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseFragment;
 import com.hengwei.module_home_tab_2_test.Tab2Activity;
 import com.hengwei.module_home_tab_2_test.R;
 
-public class MainFragment extends BaseFragment {
+@Route(path = RouteConfig.ROUTE_FRAGMENT_TAB2)
+public class Tab2Fragment extends BaseFragment {
 
     private MainViewModel mViewModel;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static Tab2Fragment newInstance() {
+        return new Tab2Fragment();
     }
 
 

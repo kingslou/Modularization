@@ -1,7 +1,6 @@
 package com.geen.module_login;
 
 import android.app.Application;
-
 import com.geen.commonlibary.IComponentApplication;
 import com.geen.componentmanger.ServiceFactory;
 import com.socks.library.KLog;

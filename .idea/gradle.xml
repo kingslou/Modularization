@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/module_home_tab_1_test" />
             <option value="$PROJECT_DIR$/module_home_tab_2_test" />
             <option value="$PROJECT_DIR$/module_login" />
+            <option value="$PROJECT_DIR$/module_main" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

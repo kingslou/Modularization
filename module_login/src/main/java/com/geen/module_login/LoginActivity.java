@@ -2,7 +2,6 @@ package com.geen.module_login;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import androidx.annotation.Nullable;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
@@ -84,7 +83,7 @@ public class LoginActivity extends BaseActivity {
         }
         //如果本地token 不为空，并且是记录用户名密码,就直接跳转到主界面
         if(!TextUtils.isEmpty(ConfigUtil.getString(AppConstans.TOKEN)) &&ConfigUtil.getBoolean(AppConstans.CHECK_PWD)){
-            ARouter.getInstance().build(RouteConfig.ROUTE_MAIN).navigation();
+            ARouter.getInstance().build(routeLoginTo).navigation();
             finish();
         }
     }
@@ -102,9 +101,6 @@ public class LoginActivity extends BaseActivity {
         loginRepository.loginApp(this,loginBinding.edAccount.getText().toString(), loginBinding.editPwd.getText().toString(), new OnResponseListener<LoginResponse>() {
             @Override
             public void onSuccess(LoginResponse loginResponse) {
-                if (isFinishing()) {
-                    return;
-                }
                 progressDialog.dismiss();
                 loginBinding.btnLogin.setEnabled(true);
                 if(loginResponse.getLoginInfo()==null){
@@ -112,7 +108,6 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
                 ConfigUtil.saveBoolean(AppConstans.CHECK_PWD, loginBinding.checkPwd.isChecked());
-                Log.e("当前登录的token",loginResponse.getLoginInfo().getToken());
                 ServiceFactory.getInstance().getUserInfoService().cacheLoginInfo(loginResponse.getLoginInfo());
                 ARouter.getInstance().build(routeLoginTo).navigation(LoginActivity.this, new NavCallback() {
                     @Override
@@ -124,12 +119,16 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onFailed(String e) {
-                if (isFinishing()) {
-                    return;
-                }
                 loginBinding.btnLogin.setEnabled(true);
                 progressDialog.dismiss();
                 ToastUtil.showTips(e);
+
+                ARouter.getInstance().build(routeLoginTo).navigation(LoginActivity.this, new NavCallback() {
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        finish();
+                    }
+                });
             }
         });
     }

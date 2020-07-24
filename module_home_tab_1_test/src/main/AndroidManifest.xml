@@ -19,7 +19,7 @@
         android:name="debug.DebugApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Login"
+        android:label="Tab1"
         android:networkSecurityConfig="@xml/network_security_config"
         android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
