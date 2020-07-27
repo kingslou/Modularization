@@ -33,7 +33,7 @@ public class Tab1Fragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       // mViewModel = new ViewModelProvider((Tab1Activity)mActivity).get(MainViewModel.class);
+        mViewModel = new ViewModelProvider(mActivity).get(MainViewModel.class);
         // TODO: Use the ViewModel
     }
 

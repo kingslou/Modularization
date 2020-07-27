@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +15,12 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.geen.commonlibary.RouteConfig;
+import com.geen.commonlibary.base.BaseFragment;
+import com.hengwei.modul_home_tab_3.MainActivity;
 import com.hengwei.modul_home_tab_3.R;
 
 @Route(path = RouteConfig.ROUTE_FRAGMENT_TAB3)
-public class MainFragment extends Fragment {
+public class MainFragment extends BaseFragment {
 
     private MainViewModel mViewModel;
 
@@ -33,7 +38,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel = new ViewModelProvider(mActivity).get(MainViewModel.class);
         // TODO: Use the ViewModel
     }
 

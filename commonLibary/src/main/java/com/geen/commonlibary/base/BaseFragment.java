@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+
 import com.geen.commonlibary.eventbus.Event;
 import com.geen.commonlibary.eventbus.EventBusUtil;
 import com.geen.commonlibary.mvp.BasePresenter;
@@ -17,7 +19,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
 
     public T mPresenter;
 
-    public Activity mActivity;
+    public FragmentActivity mActivity;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onAttachFragment(@NonNull Fragment childFragment) {
         super.onAttachFragment(childFragment);
-        mActivity = childFragment.getActivity();
-
     }
 
 
@@ -55,14 +55,14 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        mActivity = (Activity)context;
+        mActivity = (FragmentActivity) context;
     }
 
     @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         if(mActivity==null){
-            mActivity = activity;
+            mActivity = (FragmentActivity) activity;
         }
     }
 
