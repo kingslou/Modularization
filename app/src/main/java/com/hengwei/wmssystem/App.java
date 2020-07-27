@@ -1,4 +1,6 @@
 package com.hengwei.wmssystem;
+
+
 import com.geen.commonlibary.BaseApplication;
 
 public class App extends BaseApplication {

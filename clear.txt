@@ -1,0 +1,3 @@
+
+//清理缓存
+gradlew build --refresh-dependencies
