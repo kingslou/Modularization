@@ -40,7 +40,7 @@ public class ApiClient {
     private static final int TIME_OUT = 20 * 1000;
 
     private ApiClient() {
-        initApiClient("");
+
     }
 
     private static class Holder {
@@ -52,7 +52,10 @@ public class ApiClient {
         return Holder.INSTANCE;
     }
 
-    private void initApiClient(String baseUrl) {
+    public void initApiClient(String baseUrl) {
+        if(mRetrofit!=null){
+            return;
+        }
         if (TextUtils.isEmpty(baseUrl)) {
             baseUrl = UrlManger.getApiUrl();
         }

@@ -49,21 +49,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors {
-        //开发环境
-        develop {
-            buildConfigField "int", "ENV_TYPE", "1"
-        }
-        //测试环境
-        uat {
-            buildConfigField "int", "ENV_TYPE", "2"
-
-        }
-        //生产环境
-        product {
-            buildConfigField "int", "ENV_TYPE", "3"
-        }
-    }
 }
 
 dependencies {

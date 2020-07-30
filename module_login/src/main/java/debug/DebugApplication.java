@@ -10,4 +10,9 @@ public class DebugApplication extends BaseApplication {
         LoginAppInit loginAppInit = new LoginAppInit();
         loginAppInit.onCreate(this);
     }
+
+    @Override
+    public boolean isDebug() {
+        return false;
+    }
 }

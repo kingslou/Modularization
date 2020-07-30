@@ -7,4 +7,9 @@ public class DebugApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
     }
+
+    @Override
+    public boolean isDebug() {
+        return false;
+    }
 }

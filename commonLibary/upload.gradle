@@ -1,0 +1,61 @@
+import org.gradle.api.internal.artifacts.publish.DefaultPublishArtifact
+// 多个 productFlavors 打包方法
+// 有个问题是 这样 aar包里面的三方依赖无法引用了
+// 导入类
+apply plugin: 'maven'
+
+def isReleaseBuild() {
+    return VERSION_NAME.toUpperCase().contains("SNAPSHOT") == false
+}
+def getRepositoryUsername() {
+    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+}
+def getRepositoryPassword() {
+    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+}
+def getRepositoryUrl() {
+    return isReleaseBuild() ? RELEASE_REPOSITORY_URL : SNAPSHOT_REPOSITORY_URL
+}
+
+configurations {
+    devpArchives
+    prodArchives
+}
+//配置要上传的文件信息
+artifacts {
+    //要上传的aar文件配置，其中File()要根据具体生成的aar修改
+    prodArchives new DefaultPublishArtifact("pro", "aar", "aar", null, new Date(), new File("build/outputs/aar", "commonLibary-product-release.aar"))
+    devpArchives new DefaultPublishArtifact("dev", "aar", "aar", null, new Date(), new File("build/outputs/aar", "commonLibary-develop-release.aar"))
+}
+
+//上传调试版aar 上传前执行：assembleDevpRelease
+task uploadDev(type: Upload, group: "upload", dependsOn: 'assembleDevelopRelease') {
+
+    setConfiguration(project.configurations.getByName("devpArchives"))
+    repositories.mavenDeployer {
+        //配置pom信息
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = VERSION_NAME
+        repository(url: getRepositoryUrl()) {
+            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+    }
+}
+
+//上传正式版aar 上传前执行：assembleProdRelease
+task uploadPro(type: Upload, group: "upload", dependsOn: 'assembleProductRelease') {
+
+    setConfiguration(project.configurations.getByName("prodArchives"))
+    repositories.mavenDeployer {
+        //配置pom信息
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = VERSION_NAME
+        repository(url: getRepositoryUrl()) {
+            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+    }
+}

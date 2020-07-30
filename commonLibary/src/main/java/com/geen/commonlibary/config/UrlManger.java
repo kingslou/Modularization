@@ -1,6 +1,5 @@
 package com.geen.commonlibary.config;
 import android.text.TextUtils;
-import com.geen.commonlibary.BuildConfig;
 
 /***
  * @author genn
@@ -13,7 +12,7 @@ public class UrlManger {
     private static String productUrl;
 
     public static String getApiUrl() {
-        int buildType = BuildConfig.ENV_TYPE;
+        int buildType = 0;
         switch (buildType) {
             case EnvType.DEVELOP:
                 return getDevelopUrl();

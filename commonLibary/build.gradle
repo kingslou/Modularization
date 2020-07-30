@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from : "../publish.gradle"
+apply from : "upload_nexus.gradle"
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -34,22 +34,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    productFlavors {
-        //开发环境
-        develop {
-            buildConfigField "int", "ENV_TYPE", "1"
-        }
-        //测试环境
-        uat {
-            buildConfigField "int", "ENV_TYPE", "2"
-
-        }
-        //生产环境
-        product {
-            buildConfigField "int", "ENV_TYPE", "3"
         }
     }
 }

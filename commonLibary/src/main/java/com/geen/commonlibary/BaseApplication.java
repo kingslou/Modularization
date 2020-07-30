@@ -8,30 +8,31 @@ import androidx.multidex.MultiDex;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.geen.commonlibary.log.LuoJiFileLog;
 import com.geen.commonlibary.utils.ConfigUtil;
+import com.geen.commonlibary.utils.ToastUtil;
 import com.socks.library.KLog;
 
-public class BaseApplication extends Application {
+public abstract class BaseApplication extends Application {
 
     private static BaseApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        if(BuildConfig.DEBUG){
+        if (isDebug()) {
             ARouter.openDebug();
             ARouter.openLog();
         }
         ARouter.init(this);
-        ConfigUtil.mPref = getSharedPreferences("hengwei_sys",MODE_PRIVATE);
+        ConfigUtil.mPref = getSharedPreferences("hengwei_sys", MODE_PRIVATE);
         LuoJiFileLog.start(this);
-        KLog.init(true,"retrofit");
+        if (isDebug()) {
+            KLog.init(true, "retrofit");
+        }
         modulesApplicationInit();
     }
 
-    private void initUpdate(){
-//        Bugly.init(this,"6ea229c004",BuildConfig.DEBUG);
-//        Beta.autoCheckAppUpgrade = true;
-    }
+    public abstract boolean isDebug();
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -39,16 +40,16 @@ public class BaseApplication extends Application {
         MultiDex.install(base);
     }
 
-    public static BaseApplication getInstance(){
+    public static BaseApplication getInstance() {
         return instance;
     }
 
-    private void modulesApplicationInit(){
-        for (String moduleImpl : ModuleConfig.MODULESLIST){
+    private void modulesApplicationInit() {
+        for (String moduleImpl : ModuleConfig.MODULESLIST) {
             try {
                 Class<?> clazz = Class.forName(moduleImpl);
                 Object obj = clazz.newInstance();
-                if (obj instanceof IComponentApplication){
+                if (obj instanceof IComponentApplication) {
                     ((IComponentApplication) obj).onCreate(BaseApplication.getInstance());
                 }
             } catch (ClassNotFoundException e) {
