@@ -30,9 +30,13 @@ public abstract class BaseApplication extends Application {
             KLog.init(true, "retrofit");
         }
         modulesApplicationInit();
+
+        initApiClient();
     }
 
     public abstract boolean isDebug();
+
+    public abstract void initApiClient();
 
     @Override
     protected void attachBaseContext(Context base) {

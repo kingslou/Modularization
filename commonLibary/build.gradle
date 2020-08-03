@@ -78,5 +78,7 @@ dependencies {
     api 'com.qmuiteam:qmui:2.0.0-alpha10'
     // 阿里巴巴 路由框架
     api 'com.alibaba:arouter-api:1.5.0'
+    api files('libs/DataCollection.jar')
+    api files('libs/platform_sdk_v2.4.0810.jar')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }

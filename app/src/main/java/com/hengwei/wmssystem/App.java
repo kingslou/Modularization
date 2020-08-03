@@ -10,9 +10,11 @@ public class App extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+    }
 
-        ApiClient.getInstance().initApiClient(UrlManger.getApiUrl());
-
+    @Override
+    public void initApiClient() {
+        ApiClient.getInstance().initApiClient(UrlManger.getApiUrl(UrlManger.API_TYPE_DEV));
     }
 
     @Override

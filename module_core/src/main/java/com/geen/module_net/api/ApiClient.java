@@ -57,7 +57,7 @@ public class ApiClient {
             return;
         }
         if (TextUtils.isEmpty(baseUrl)) {
-            baseUrl = UrlManger.getApiUrl();
+            baseUrl = UrlManger.getApiUrl(UrlManger.API_TYPE_DEV);
         }
         OkHttpClient client = new OkHttpClient.Builder()
                 .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)

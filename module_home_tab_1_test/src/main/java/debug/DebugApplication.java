@@ -12,4 +12,9 @@ public class DebugApplication extends BaseApplication {
     public boolean isDebug() {
         return false;
     }
+
+    @Override
+    public void initApiClient() {
+
+    }
 }

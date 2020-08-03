@@ -1,5 +1,4 @@
 package com.geen.commonlibary.config;
-import android.text.TextUtils;
 
 /***
  * @author genn
@@ -7,55 +6,36 @@ import android.text.TextUtils;
  */
 public class UrlManger {
 
-    private static String uatUrl;
-    private static String developUrl;
-    private static String productUrl;
+    public final static int API_TYPE_DEV = 0;
+    public final static int API_TYPE_UAT = 1;
+    public final static int API_TYPE_RELEASE = 2;
 
-    public static String getApiUrl() {
-        int buildType = 0;
-        switch (buildType) {
-            case EnvType.DEVELOP:
+    public static String getApiUrl(int netEnv) {
+
+        switch (netEnv) {
+            case API_TYPE_DEV:
                 return getDevelopUrl();
-            case EnvType.UAT:
+            case API_TYPE_UAT:
                 return getUatUrl();
-            case EnvType.PRODUCT:
-                return getProductUrl();
+            case API_TYPE_RELEASE:
+                return getReleaseUrl();
             default:
-                break;
+                return getDevelopUrl();
         }
-        return getProductUrl();
-    }
-
-    public static void setUatUrl(String url) {
-        uatUrl = url;
-    }
-
-    public static void setDevelopUrl(String url) {
-        developUrl = url;
-    }
-
-    public static void setProductUrl(String url) {
-        productUrl = url;
     }
 
     private static String getUatUrl() {
-        if (!TextUtils.isEmpty(uatUrl)) {
-            return uatUrl;
-        }
+
         return "http://192.168.5.60:8723/";
     }
 
     private static String getDevelopUrl() {
-        if (!TextUtils.isEmpty(developUrl)) {
-            return developUrl;
-        }
+
         return "http://172.16.10.234:8723/";
     }
 
-    private static String getProductUrl() {
-        if (!TextUtils.isEmpty(productUrl)) {
-            return productUrl;
-        }
+    private static String getReleaseUrl() {
+
         return "http://seewayuat.creaway.cn:8723";
     }
 
