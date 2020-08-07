@@ -79,7 +79,7 @@ dependencies {
     implementation project(path: ':module_login')
     implementation project(path: ':module_main')
     implementation project(path: ':module_home_tab_task')
-    implementation project(path: ':module_home_tab_2_test')
-    implementation project(path: ':module_home_tab_3_test')
+    implementation project(path: ':module_home_tab_warehous')
+    implementation project(path: ':module_home_tab_warehouse_out')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }
