@@ -1,4 +1,4 @@
-package com.hengwei.module_home_tab_1_test.ui.main;
+package com.hengwei.module_home_tab_task.ui.main;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseFragment;
-import com.hengwei.module_home_tab_1_test.R;
-import com.hengwei.module_home_tab_1_test.Tab1Activity;
+import com.hengwei.module_home_tab_task.R;
 
 @Route(path = RouteConfig.ROUTE_FRAGMENT_TAB1)
 public class Tab1Fragment extends BaseFragment {

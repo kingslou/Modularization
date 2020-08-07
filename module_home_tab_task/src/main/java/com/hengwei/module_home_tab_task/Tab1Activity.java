@@ -1,11 +1,8 @@
-package com.hengwei.module_home_tab_1_test;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.hengwei.module_home_tab_task;
 
 import android.os.Bundle;
-
 import com.geen.commonlibary.base.BaseActivity;
-import com.hengwei.module_home_tab_1_test.ui.main.Tab1Fragment;
+import com.hengwei.module_home_tab_task.ui.main.Tab1Fragment;
 
 public class Tab1Activity extends BaseActivity {
 
