@@ -28,7 +28,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab3_main_fragment, container, false);
+        return inflater.inflate(R.layout.tab_out_main_fragment, container, false);
     }
 
     @Override

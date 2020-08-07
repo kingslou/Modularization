@@ -6,7 +6,7 @@ if(isRunAlone.toBoolean()){
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
-    resourcePrefix "tab3_"
+    resourcePrefix "tab_out"
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion

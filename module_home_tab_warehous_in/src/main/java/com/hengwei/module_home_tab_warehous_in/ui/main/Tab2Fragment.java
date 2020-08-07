@@ -29,7 +29,7 @@ public class Tab2Fragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab2_main_fragment, container, false);
+        return inflater.inflate(R.layout.tab_in_main_fragment, container, false);
     }
 
     @Override
