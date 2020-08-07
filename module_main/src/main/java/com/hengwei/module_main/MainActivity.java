@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseActivity;
+import com.geen.componentmanger.ServiceFactory;
 import com.hengwei.module_main.databinding.MainActivityMainBinding;
 import com.socks.library.KLog;
 
@@ -36,6 +37,8 @@ public class MainActivity extends BaseActivity {
         setContentView(mainBinding.getRoot());
         initToolbar(mainBinding.toolbar,false);
         initFragment();
+
+
     }
 
     private void initFragment(){
@@ -51,6 +54,11 @@ public class MainActivity extends BaseActivity {
         Fragment tab3 = (Fragment)ARouter.getInstance().build(RouteConfig.ROUTE_FRAGMENT_TAB3).navigation();
         if(tab3!=null){
             fragmentList.add(tab3);
+        }
+
+        Fragment tab4 = (Fragment)ARouter.getInstance().build(RouteConfig.ROUTE_FRAGMENT_TAB4).navigation();
+        if(tab4!=null){
+            fragmentList.add(tab4);
         }
 
         KLog.e("数量"+fragmentList.size());

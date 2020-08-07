@@ -17,7 +17,7 @@ public class RouteConfig {
     public static final String ROUTE_FRAGMENT_TAB1 = "/fragment1/tab1";
     public static final String ROUTE_FRAGMENT_TAB2 = "/fragment2/tab2";
     public static final String ROUTE_FRAGMENT_TAB3 = "/fragment3/tab3";
-
+    public static final String ROUTE_FRAGMENT_TAB4 = "/fragment4/tab4";
 
 
     public static class Params{

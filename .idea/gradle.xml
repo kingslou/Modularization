@@ -16,7 +16,8 @@
             <option value="$PROJECT_DIR$/componentManger" />
             <option value="$PROJECT_DIR$/module_core" />
             <option value="$PROJECT_DIR$/module_home_tab_task" />
-            <option value="$PROJECT_DIR$/module_home_tab_warehous" />
+            <option value="$PROJECT_DIR$/module_home_tab_warehous_in" />
+            <option value="$PROJECT_DIR$/module_home_tab_warehous_inside" />
             <option value="$PROJECT_DIR$/module_home_tab_warehouse_out" />
             <option value="$PROJECT_DIR$/module_login" />
             <option value="$PROJECT_DIR$/module_main" />
