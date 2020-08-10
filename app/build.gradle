@@ -72,15 +72,10 @@ static def packTime() {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-//    implementation 'com.geen:commonLibary:1.0.4-20200730.025223-6'
     implementation project(path: ':commonLibary')
     implementation project(path: ':module_core')
     implementation project(path: ':componentManger')
     implementation project(path: ':module_login')
     implementation project(path: ':module_main')
-    implementation project(path: ':module_home_tab_task')
-    implementation project(path: ':module_home_tab_warehous_in')
-    implementation project(path: ':module_home_tab_warehouse_out')
-    implementation project(path: ':module_home_tab_warehous_inside')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }

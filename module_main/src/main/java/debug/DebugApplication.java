@@ -1,6 +1,7 @@
-package com.hengwei.module_main.debug;
+package debug;
 
 import com.geen.commonlibary.BaseApplication;
+import com.hengwei.module_main.BuildConfig;
 
 public class DebugApplication extends BaseApplication {
 
@@ -11,7 +12,7 @@ public class DebugApplication extends BaseApplication {
 
     @Override
     public boolean isDebug() {
-        return false;
+        return BuildConfig.DEBUG;
     }
 
     @Override

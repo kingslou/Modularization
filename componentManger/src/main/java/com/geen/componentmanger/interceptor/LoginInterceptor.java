@@ -1,6 +1,7 @@
 package com.geen.componentmanger.interceptor;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Interceptor;
@@ -22,6 +23,7 @@ public class LoginInterceptor implements IInterceptor {
             if (ServiceFactory.getInstance().getUserInfoService().isLogin()) {
                 callback.onContinue(postcard);  // 处理完成，交还控制权
             } else {
+                Log.e("Arouter","拦截"+postcard.getPath());
                 callback.onInterrupt(new RuntimeException("请登录")); // 中断路由流程
             }
         } else {

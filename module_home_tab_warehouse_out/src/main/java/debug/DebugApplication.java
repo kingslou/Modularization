@@ -1,4 +1,4 @@
-package com.hengwei.modul_home_tab_warehouse_out.debug;
+package debug;
 import com.geen.commonlibary.BaseApplication;
 
 public class DebugApplication extends BaseApplication {

@@ -62,6 +62,11 @@ dependencies {
     implementation project(path: ':commonLibary')
     implementation project(path: ':module_core')
 
+    implementation project(path: ':module_home_tab_warehous_in')
+    implementation project(path: ':module_home_tab_task')
+    implementation project(path: ':module_home_tab_warehouse_out')
+    implementation project(path: ':module_home_tab_warehous_inside')
+
 
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }

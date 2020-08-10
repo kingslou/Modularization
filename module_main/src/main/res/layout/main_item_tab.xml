@@ -3,19 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llTabRoot"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_49"
+    android:layout_height="@dimen/dp_59"
+    android:background="@color/white"
     android:foreground="?selectableItemBackgroundBorderless"
-    android:background="@drawable/main_selector_tab_color"
     android:orientation="vertical"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
-    >
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon_tab"
-        android:layout_width="@dimen/dp_28"
-        android:layout_height="@dimen/dp_28"
-        android:visibility="gone"
+        android:layout_width="@dimen/dp_22"
+        android:layout_height="@dimen/dp_22"
         android:layout_gravity="center_horizontal|center_vertical" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -26,7 +24,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="Tab1"
-        android:textColor="#999999"
+        android:textColor="@drawable/tab_text_color"
         android:textSize="@dimen/sp_14"
         tools:ignore="UnusedAttribute" />
 

@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseFragment;
+import com.geen.componentmanger.ServiceFactory;
 import com.hengwei.module_home_tab_task.R;
 
 @Route(path = RouteConfig.ROUTE_FRAGMENT_TAB1)
@@ -36,4 +38,11 @@ public class Tab1Fragment extends BaseFragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!ServiceFactory.getInstance().getUserInfoService().isLogin()){
+
+        }
+    }
 }

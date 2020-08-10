@@ -37,7 +37,7 @@ public class ApiClient {
 
     private String baseUrl;
 
-    private static final int TIME_OUT = 20 * 1000;
+    private static final int TIME_OUT = 5 * 1000;
 
     private ApiClient() {
 
