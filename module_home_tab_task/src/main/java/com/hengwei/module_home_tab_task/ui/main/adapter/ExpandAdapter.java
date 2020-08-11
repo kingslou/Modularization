@@ -14,7 +14,7 @@ import java.util.List;
 public class ExpandAdapter extends BaseQuickAdapter<ExpandItem, BaseViewHolder> {
 
     public ExpandAdapter(List<ExpandItem> data) {
-        super(R.layout.tab_task_item_main, data);
+        super(R.layout.tab_task_item_expand, data);
     }
 
     @Override

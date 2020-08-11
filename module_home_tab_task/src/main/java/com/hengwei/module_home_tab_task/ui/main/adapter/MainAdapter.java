@@ -2,15 +2,18 @@ package com.hengwei.module_home_tab_task.ui.main.adapter;
 
 import android.view.View;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.DeviceUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.geen.commonlibary.utils.ToastUtil;
+import com.geen.commonlibary.widget.DividerUtils;
 import com.geen.commonlibary.widget.ExpandView;
 import com.hengwei.module_home_tab_task.R;
 import com.hengwei.module_home_tab_task.bean.MainInfo;
-
 import java.util.List;
 
 /***
@@ -42,6 +45,14 @@ public class MainAdapter extends BaseQuickAdapter<MainInfo, BaseViewHolder> {
         ExpandAdapter adapter = new ExpandAdapter(mainInfo.getExpandItemList());
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(mContext,RecyclerView.VERTICAL));
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ToastUtil.showTips("点击了"+position);
+            }
+        });
     }
 }
