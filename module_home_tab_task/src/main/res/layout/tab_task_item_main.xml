@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="标题" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageArrow"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/tab_task_selector_arrow" />
+    </RelativeLayout>
+
+
+    <com.geen.commonlibary.widget.ExpandView
+        android:id="@+id/expandView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_little"
+        android:visibility="gone" />
+
+</LinearLayout>
