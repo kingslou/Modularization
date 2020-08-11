@@ -12,15 +12,10 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseFragment;
-import com.geen.commonlibary.utils.ToastUtil;
-import com.geen.commonlibary.widget.ExpandView;
-import com.hengwei.module_home_tab_task.R;
 import com.hengwei.module_home_tab_task.bean.ExpandItem;
 import com.hengwei.module_home_tab_task.bean.MainInfo;
 import com.hengwei.module_home_tab_task.databinding.TabTaskMainFragmentBinding;
 import com.hengwei.module_home_tab_task.ui.main.adapter.MainAdapter;
-import com.socks.library.KLog;
-
 import java.util.ArrayList;
 import java.util.List;
 
