@@ -2,20 +2,22 @@ package com.hengwei.module_home_tab_task.ui.main;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.geen.commonlibary.RouteConfig;
 import com.geen.commonlibary.base.BaseFragment;
-import com.hengwei.module_home_tab_task.bean.ExpandItem;
 import com.hengwei.module_home_tab_task.bean.MainInfo;
 import com.hengwei.module_home_tab_task.databinding.TabTaskMainFragmentBinding;
 import com.hengwei.module_home_tab_task.ui.main.adapter.MainAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class Tab1Fragment extends BaseFragment {
 
     private TabTaskMainFragmentBinding mBinding;
     private MainAdapter mainAdapter;
+    private List<MainInfo> mainInfoList = new ArrayList<>();
 
     public static Tab1Fragment newInstance() {
         return new Tab1Fragment();
@@ -35,26 +38,15 @@ public class Tab1Fragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mBinding = TabTaskMainFragmentBinding.inflate(inflater,container,false);
+        mBinding = TabTaskMainFragmentBinding.inflate(inflater, container, false);
         initView();
         return mBinding.getRoot();
     }
 
-    private void initView(){
-        List<MainInfo> mainInfoList = new ArrayList<>();
-        List<ExpandItem> expandItemList = new ArrayList<>();
+    private void initView() {
 
-        for(int i=0;i<10;i++){
-            expandItemList.add(new ExpandItem("测试"+i));
-        }
-
-        mainInfoList.add(new MainInfo("菜单一",expandItemList));
-        mainInfoList.add(new MainInfo("菜单二",expandItemList));
-        mainInfoList.add(new MainInfo("菜单三",expandItemList));
-        mainInfoList.add(new MainInfo("菜单四",expandItemList));
         mainAdapter = new MainAdapter(mainInfoList);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mBinding.recycleView.setLayoutManager(layoutManager);
         mBinding.recycleView.setAdapter(mainAdapter);
         mBinding.recycleView.addItemDecoration(new DividerItemDecoration(getActivity(), RecyclerView.VERTICAL));
@@ -62,9 +54,9 @@ public class Tab1Fragment extends BaseFragment {
         mainAdapter.setOnItemClickListener((adapter, view, position) -> {
 
             MainInfo info = mainInfoList.get(position);
-            if(info.isShowExpandView()){
+            if (info.isShowExpandView()) {
                 info.setShowExpandView(false);
-            }else{
+            } else {
                 resetExpandView();
                 info.setShowExpandView(true);
             }
@@ -73,9 +65,9 @@ public class Tab1Fragment extends BaseFragment {
 
     }
 
-    private void resetExpandView(){
-        if(mainAdapter!=null && mainAdapter.getData()!=null){
-            for(MainInfo info :mainAdapter.getData()){
+    private void resetExpandView() {
+        if (mainAdapter != null && mainAdapter.getData() != null) {
+            for (MainInfo info : mainAdapter.getData()) {
                 info.setShowExpandView(false);
             }
         }
@@ -86,6 +78,16 @@ public class Tab1Fragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(mActivity).get(MainViewModel.class);
         // TODO: Use the ViewModel
+
+
+
+        mViewModel.getMainList().observe(getViewLifecycleOwner(), new Observer<List<MainInfo>>() {
+            @Override
+            public void onChanged(List<MainInfo> mainInfos) {
+                Log.e("执行","xxxx11111");
+                mainAdapter.setList(mainInfos);
+            }
+        });
     }
 
     @Override
