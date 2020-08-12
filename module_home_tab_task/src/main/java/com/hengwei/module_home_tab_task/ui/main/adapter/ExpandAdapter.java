@@ -1,7 +1,6 @@
 package com.hengwei.module_home_tab_task.ui.main.adapter;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.hengwei.module_home_tab_task.R;
 import com.hengwei.module_home_tab_task.bean.ExpandItem;
 

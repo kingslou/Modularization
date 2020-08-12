@@ -60,15 +60,15 @@ public class Tab1Fragment extends BaseFragment {
         mBinding.recycleView.addItemDecoration(new DividerItemDecoration(getActivity(), RecyclerView.VERTICAL));
 
         mainAdapter.setOnItemClickListener((adapter, view, position) -> {
+
             MainInfo info = mainInfoList.get(position);
-            //resetExpandView();
             if(info.isShowExpandView()){
                 info.setShowExpandView(false);
             }else{
                 resetExpandView();
                 info.setShowExpandView(true);
             }
-            mainAdapter.setNewData(mainInfoList);
+            mainAdapter.setList(mainInfoList);
         });
 
     }
